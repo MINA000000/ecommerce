@@ -4,11 +4,13 @@ import 'package:ecommerce/core/resources/font_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
 import 'package:ecommerce/core/resources/values_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
+import 'package:ecommerce/core/utils/ui_utils.dart';
 import 'package:ecommerce/core/utils/validator.dart';
 import 'package:ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:ecommerce/core/widgets/custom_text_field.dart';
 import 'package:ecommerce/features/auth/data/models/login_request.dart';
 import 'package:ecommerce/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:ecommerce/features/auth/presentation/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,24 +93,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: Sizes.s60.h),
                   Center(
                     child: SizedBox(
-                      child: CustomElevatedButton(
-                        label: 'Login',
-                        backgroundColor: ColorManager.white,
-                        isStadiumBorder: false,
-                        textStyle: getBoldStyle(
-                          color: ColorManager.primary,
-                          fontSize: FontSize.s18,
-                        ),
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<AuthCubit>().login(
-                              LoginRequest(
-                                email: _emailController.text,
-                                password: _passwordController.text,
-                              ),
-                            );
+                      child: BlocListener<AuthCubit,AuthState>(
+                        listener: (_, state) {
+                          if (state is LoginLoading) {
+                            UIUtils.showLoading(context);
+                          } else if (state is LoginSuccess) {
+                            UIUtils.hideLoading(context);
+                            Navigator.of(
+                              context,
+                            ).pushReplacementNamed(Routes.home);
+                          } else if (state is LoginError) {
+                            UIUtils.hideLoading(context);
+                            UIUtils.showMessage(state.errorMessage);
                           }
                         },
+                        child: CustomElevatedButton(
+                          label: 'Login',
+                          backgroundColor: ColorManager.white,
+                          isStadiumBorder: false,
+                          textStyle: getBoldStyle(
+                            color: ColorManager.primary,
+                            fontSize: FontSize.s18,
+                          ),
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthCubit>().login(
+                                LoginRequest(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ),
