@@ -6,7 +6,9 @@ import 'package:ecommerce/features/auth/data/data_sources/remote/auth_remote_dat
 import 'package:ecommerce/features/auth/data/models/login_request.dart';
 import 'package:ecommerce/features/auth/data/models/register_request.dart';
 import 'package:ecommerce/features/auth/data/models/user_model.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class AuthRepository {
   final AuthRemoteDataSource _authRemoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
