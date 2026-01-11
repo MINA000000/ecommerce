@@ -44,7 +44,7 @@ class AuthApiRemoteDataSource implements AuthRemoteDataSource {
       if (exception is DioException) {
         message = exception.response?.data['message'];
       }
-      throw LocalException(message ?? 'Failed to Register');
+      throw RemoteException(message ?? 'Failed to Register');
     }
   }
 }
