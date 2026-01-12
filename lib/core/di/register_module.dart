@@ -5,9 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class RegisterModule {
-  // You can register named preemptive types like follows
-  @Named("BaseUrl")
-  String get baseUrl => 'My base url';
 
   // url here will be injected
   @singleton
