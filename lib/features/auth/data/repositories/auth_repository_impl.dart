@@ -3,6 +3,7 @@ import 'package:ecommerce/core/error/exceptions.dart';
 import 'package:ecommerce/core/error/failure.dart';
 import 'package:ecommerce/features/auth/data/data_sources/local/auth_local_data_source.dart';
 import 'package:ecommerce/features/auth/data/data_sources/remote/auth_remote_data_source.dart';
+import 'package:ecommerce/features/auth/data/mappers/user_mapper.dart';
 import 'package:ecommerce/features/auth/data/models/login_request.dart';
 import 'package:ecommerce/features/auth/data/models/register_request.dart';
 import 'package:ecommerce/features/auth/domain/entities/user.dart';
@@ -20,7 +21,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final response = await _authRemoteDataSource.register(request);
       await _authLocalDataSource.saveToken(response.token);
-      return Right(response.user);
+      return Right(response.user.toEntity);
     } on AppException catch (exception) {
       return Left(Failure(exception.message));
     }
@@ -31,7 +32,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final response = await _authRemoteDataSource.login(request);
       await _authLocalDataSource.saveToken(response.token);
-      return Right(response.user);
+      return Right(response.user.toEntity);
     } on AppException catch (exception) {
       return Left(Failure(exception.message));
     }
