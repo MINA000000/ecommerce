@@ -1,0 +1,14 @@
+import 'package:dartz/dartz.dart';
+import 'package:ecommerce/core/error/failure.dart';
+import 'package:ecommerce/features/home/demain/entities/category.dart';
+import 'package:ecommerce/features/home/demain/repositories/home_repository.dart';
+import 'package:injectable/injectable.dart';
+
+@lazySingleton
+class GetCategories {
+  final HomeRepository _homeRepository;
+  GetCategories(this._homeRepository);
+  Future<Either<Failure, List<Category>>> call() {
+    return _homeRepository.getCategories();
+  }
+}

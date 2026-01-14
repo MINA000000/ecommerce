@@ -1,9 +1,10 @@
-class APIConstants{
+class APIConstants {
   static const String baseURL = 'https://ecommerce.routemisr.com/api/v1/';
-  static const String register = 'auth/signup';
-  static const String loging = 'auth/signin';
+  static const String registerEndpoint = 'auth/signup';
+  static const String logingEndpoint = 'auth/signin';
+  static const String categoriesEndpoint = 'categories';
 }
 
-class CacheConstants{
+class CacheConstants {
   static const String token = 'token';
 }
