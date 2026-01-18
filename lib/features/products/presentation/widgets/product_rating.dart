@@ -8,10 +8,7 @@ class ProductRating extends StatelessWidget {
   final String rating;
   final String buyers;
 
-  const ProductRating({
-    required this.rating,
-    required this.buyers,
-  });
+  const ProductRating({required this.rating, required this.buyers});
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +27,21 @@ class ProductRating extends StatelessWidget {
           child: Text(
             '$buyers Sold',
             overflow: TextOverflow.ellipsis,
-            style: getMediumStyle(color: ColorManager.primary)
-                .copyWith(fontSize: 18.sp),
+            style: getMediumStyle(
+              color: ColorManager.primary,
+            ).copyWith(fontSize: 18.sp),
           ),
         ),
-        SizedBox(
-          width: 16.w,
-        ),
-        Image.asset(
-          ImageAssets.rate,
-          width: 30.w,
-        ),
-        SizedBox(
-          width: 4.w,
-        ),
+        SizedBox(width: 16.w),
+        Image.asset(ImageAssets.rate, width: 30.w),
+        SizedBox(width: 4.w),
         Expanded(
           child: Text(
             rating,
             overflow: TextOverflow.ellipsis,
-            style: getMediumStyle(color: ColorManager.appBarTitle)
-                .copyWith(fontSize: 14.sp),
+            style: getMediumStyle(
+              color: ColorManager.appBarTitle,
+            ).copyWith(fontSize: 14.sp),
           ),
         ),
       ],

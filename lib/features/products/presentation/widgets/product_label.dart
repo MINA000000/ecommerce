@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductLabel extends StatelessWidget {
-  const ProductLabel({
-    required this.name,
-    required this.price,
-  });
+  const ProductLabel({required this.name, required this.price});
 
   final String name;
   final String price;
@@ -20,14 +17,16 @@ class ProductLabel extends StatelessWidget {
         Expanded(
           child: Text(
             name,
-            style: getMediumStyle(color: ColorManager.primary)
-                .copyWith(fontSize: 18.sp),
+            style: getMediumStyle(
+              color: ColorManager.primary,
+            ).copyWith(fontSize: 18.sp),
           ),
         ),
         Text(
           price,
-          style: getMediumStyle(color: ColorManager.primary)
-              .copyWith(fontSize: 18.sp),
+          style: getMediumStyle(
+            color: ColorManager.primary,
+          ).copyWith(fontSize: 18.sp),
         ),
       ],
     );

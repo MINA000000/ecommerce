@@ -48,33 +48,24 @@ class WishlistItem extends StatelessWidget {
                       color: ColorManager.primary,
                     ),
                   ),
-                  errorWidget: (_, __, ___) => const Icon(
-                    Icons.error,
-                    color: ColorManager.primary,
-                  ),
+                  errorWidget: (_, __, ___) =>
+                      const Icon(Icons.error, color: ColorManager.primary),
                 ),
               ),
             ),
             Expanded(
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: Insets.s8.w),
-                child: WishlistItemDetails(
-                  product: product,
-                ),
+                child: WishlistItemDetails(product: product),
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                HeartButton(
-                  onTap: () {},
-                ),
+                HeartButton(onTap: () {}),
                 SizedBox(height: Sizes.s14.h),
-                AddToCartButton(
-                  onPressed: () {},
-                  text: 'Add to Cart',
-                ),
+                AddToCartButton(onPressed: () {}, text: 'Add to Cart'),
               ],
             ),
           ],

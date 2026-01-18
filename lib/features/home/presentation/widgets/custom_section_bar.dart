@@ -22,10 +22,7 @@ class CustomSectionBar extends StatelessWidget {
         children: [
           Text(
             sectionName,
-            style: getMediumStyle(
-              fontSize: 18,
-              color: ColorManager.darkBlue,
-            ),
+            style: getMediumStyle(fontSize: 18, color: ColorManager.darkBlue),
           ),
           TextButton(
             onPressed: onViewAllClicked,

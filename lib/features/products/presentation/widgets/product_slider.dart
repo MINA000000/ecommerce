@@ -8,10 +8,7 @@ class ProductSlider extends StatefulWidget {
   final List<Widget> items;
   final int initialIndex;
 
-  const ProductSlider({
-    required this.items,
-    required this.initialIndex,
-  });
+  const ProductSlider({required this.items, required this.initialIndex});
 
   @override
   State<ProductSlider> createState() => _ProductSliderState();

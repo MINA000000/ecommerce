@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: Sizes.s60.h),
                   Center(
                     child: SizedBox(
-                      child: BlocListener<AuthCubit,AuthState>(
+                      child: BlocListener<AuthCubit, AuthState>(
                         listener: (_, state) {
                           if (state is LoginLoading) {
                             UIUtils.showLoading(context);

@@ -16,12 +16,11 @@ class ProductDescription extends StatelessWidget {
       children: [
         Text(
           'Description',
-          style: getMediumStyle(color: ColorManager.appBarTitle)
-              .copyWith(fontSize: 18.sp),
+          style: getMediumStyle(
+            color: ColorManager.appBarTitle,
+          ).copyWith(fontSize: 18.sp),
         ),
-        SizedBox(
-          height: 8.h,
-        ),
+        SizedBox(height: 8.h),
         ReadMoreText(
           description,
           style: getMediumStyle(
@@ -33,9 +32,7 @@ class ProductDescription extends StatelessWidget {
           trimMode: TrimMode.Line,
           colorClickableText: ColorManager.appBarTitle,
         ),
-        SizedBox(
-          height: 16.h,
-        ),
+        SizedBox(height: 16.h),
       ],
     );
   }

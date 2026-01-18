@@ -7,10 +7,7 @@ class ProductImage extends StatelessWidget {
   final String imageUrl;
   final void Function()? onTap;
 
-  const ProductImage({
-    required this.imageUrl,
-    this.onTap,
-  });
+  const ProductImage({required this.imageUrl, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +18,11 @@ class ProductImage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         height: 300.h,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: image,
-            fit: BoxFit.cover,
-          ),
+          image: DecorationImage(image: image, fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(15.r),
         ),
         alignment: AlignmentDirectional.topEnd,
-        child: HeartButton(
-          onTap: onTap,
-        ),
+        child: HeartButton(onTap: onTap),
       ),
     );
   }

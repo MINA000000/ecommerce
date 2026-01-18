@@ -6,10 +6,7 @@ class ProductColor extends StatefulWidget {
   final List<Color> color;
   final void Function() onSelected;
 
-  const ProductColor({
-    required this.color,
-    required this.onSelected,
-  });
+  const ProductColor({required this.color, required this.onSelected});
 
   @override
   State<ProductColor> createState() => _ProductColorState();
@@ -23,9 +20,7 @@ class _ProductColorState extends State<ProductColor> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 8.h,
-        ),
+        SizedBox(height: 8.h),
         SizedBox(
           height: 45.h,
           child: ListView.separated(
@@ -41,9 +36,7 @@ class _ProductColorState extends State<ProductColor> {
                 selectedIndex: _selectedIndex,
               ),
             ),
-            separatorBuilder: (_, __) => SizedBox(
-              width: 17.w,
-            ),
+            separatorBuilder: (_, __) => SizedBox(width: 17.w),
             itemCount: widget.color.length,
           ),
         ),

@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @Singleton(as: AuthLocalDataSource)
 class AuthSharedPrefLocalDataSource implements AuthLocalDataSource {
-  final SharedPreferences _sharedPref ;
+  final SharedPreferences _sharedPref;
 
   AuthSharedPrefLocalDataSource(this._sharedPref);
 

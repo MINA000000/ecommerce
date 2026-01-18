@@ -62,8 +62,9 @@ class ProfileTabState extends State<ProfileTab> {
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your full name',
                 label: 'Full Name',
-                controller:
-                    TextEditingController(text: 'Mohamed Mohamed Nabil'),
+                controller: TextEditingController(
+                  text: 'Mohamed Mohamed Nabil',
+                ),
                 labelTextStyle: getMediumStyle(
                   color: ColorManager.primary,
                   fontSize: FontSize.s18,
@@ -74,8 +75,9 @@ class ProfileTabState extends State<ProfileTab> {
                 ),
                 textInputType: TextInputType.text,
                 validation: Validator.validateFullName,
-                hintTextStyle: getRegularStyle(color: ColorManager.primary)
-                    .copyWith(fontSize: 18.sp),
+                hintTextStyle: getRegularStyle(
+                  color: ColorManager.primary,
+                ).copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: Sizes.s18.h),
               CustomTextField(
@@ -95,8 +97,9 @@ class ProfileTabState extends State<ProfileTab> {
                 ),
                 textInputType: TextInputType.emailAddress,
                 validation: Validator.validateEmail,
-                hintTextStyle: getRegularStyle(color: ColorManager.primary)
-                    .copyWith(fontSize: 18.sp),
+                hintTextStyle: getRegularStyle(
+                  color: ColorManager.primary,
+                ).copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: Sizes.s18.h),
               CustomTextField(
@@ -115,8 +118,9 @@ class ProfileTabState extends State<ProfileTab> {
                 suffixIcon: SvgPicture.asset(SvgAssets.edit),
                 textInputType: TextInputType.text,
                 validation: Validator.validatePassword,
-                hintTextStyle: getRegularStyle(color: ColorManager.primary)
-                    .copyWith(fontSize: 18.sp),
+                hintTextStyle: getRegularStyle(
+                  color: ColorManager.primary,
+                ).copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: Sizes.s18.h),
               CustomTextField(
@@ -136,13 +140,15 @@ class ProfileTabState extends State<ProfileTab> {
                 ),
                 textInputType: TextInputType.phone,
                 validation: Validator.validatePhoneNumber,
-                hintTextStyle: getRegularStyle(color: ColorManager.primary)
-                    .copyWith(fontSize: 18.sp),
+                hintTextStyle: getRegularStyle(
+                  color: ColorManager.primary,
+                ).copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: Sizes.s18.h),
               CustomTextField(
-                controller:
-                    TextEditingController(text: '6th October, street 11.....'),
+                controller: TextEditingController(
+                  text: '6th October, street 11.....',
+                ),
                 borderBackgroundColor: ColorManager.primary.withOpacity(.5),
                 readOnly: _isAddressReadOnly,
                 backgroundColor: ColorManager.white,
@@ -158,8 +164,9 @@ class ProfileTabState extends State<ProfileTab> {
                 ),
                 textInputType: TextInputType.streetAddress,
                 validation: Validator.validateFullName,
-                hintTextStyle: getRegularStyle(color: ColorManager.primary)
-                    .copyWith(fontSize: 18.sp),
+                hintTextStyle: getRegularStyle(
+                  color: ColorManager.primary,
+                ).copyWith(fontSize: 18.sp),
               ),
               SizedBox(height: Sizes.s50.h),
             ],

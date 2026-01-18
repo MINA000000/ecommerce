@@ -9,10 +9,7 @@ class CategoryCardItem extends StatelessWidget {
   final String title;
   final String image;
 
-  const CategoryCardItem(
-    this.title,
-    this.image,
-  );
+  const CategoryCardItem(this.title, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +20,7 @@ class CategoryCardItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(Sizes.s12.r),
         child: Stack(
           children: [
-            Image.asset(
-              image,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
+            Image.asset(image, fit: BoxFit.cover, width: double.infinity),
             Positioned.fill(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -68,8 +61,9 @@ class CategoryCardItem extends StatelessWidget {
                               ),
                               child: Text(
                                 'Shop Now',
-                                style:
-                                    getRegularStyle(color: ColorManager.white),
+                                style: getRegularStyle(
+                                  color: ColorManager.white,
+                                ),
                               ),
                             ),
                           ),

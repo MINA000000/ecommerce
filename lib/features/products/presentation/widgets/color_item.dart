@@ -22,8 +22,9 @@ class ColorItem extends StatelessWidget {
         alignment: Alignment.center,
         child: Icon(
           Icons.check,
-          color:
-              index == selectedIndex ? ColorManager.white : Colors.transparent,
+          color: index == selectedIndex
+              ? ColorManager.white
+              : Colors.transparent,
         ),
       ),
     );

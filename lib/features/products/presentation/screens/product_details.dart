@@ -28,8 +28,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         centerTitle: true,
         title: Text(
           'Product Details',
-          style: getMediumStyle(color: ColorManager.appBarTitle)
-              .copyWith(fontSize: 20.sp),
+          style: getMediumStyle(
+            color: ColorManager.appBarTitle,
+          ).copyWith(fontSize: 20.sp),
         ),
         actions: [
           IconButton(
@@ -62,30 +63,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                 items: [
                   'https://pl.kicksmaniac.com/zdjecia/2022/08/23/508/43/NIKE_AIR_JORDAN_1_RETRO_HIGH_GS_RARE_AIR_MAX_ORANGE-mini.jpg',
                   'https://pl.kicksmaniac.com/zdjecia/2022/08/23/508/43/NIKE_AIR_JORDAN_1_RETRO_HIGH_GS_RARE_AIR_MAX_ORANGE-mini.jpg',
-                ]
-                    .map(
-                      (imageURL) => ProductImage(imageUrl: imageURL),
-                    )
-                    .toList(),
+                ].map((imageURL) => ProductImage(imageUrl: imageURL)).toList(),
                 initialIndex: 0,
               ),
-              SizedBox(
-                height: 24.h,
-              ),
+              SizedBox(height: 24.h),
               const ProductLabel(
                 name: 'Nike Air Jordon Nike shoes flexible for wo..',
                 price: 'EGP 399',
               ),
-              SizedBox(
-                height: 16.h,
-              ),
+              SizedBox(height: 16.h),
               Row(
                 children: [
                   const Expanded(
-                    child: ProductRating(
-                      buyers: '1324',
-                      rating: '4.8 (853)',
-                    ),
+                    child: ProductRating(buyers: '1324', rating: '4.8 (853)'),
                   ),
                   ProductCounter(
                     initialValue: _quantity,
@@ -98,16 +88,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 16.h,
-              ),
+              SizedBox(height: 16.h),
               const ProductDescription(
                 description:
                     'Nike is a multinational corporation that designs, develops, and sells athletic footwear ,apparel, and accessories.',
               ),
-              SizedBox(
-                height: 48.h,
-              ),
+              SizedBox(height: 48.h),
               Row(
                 children: [
                   Column(
@@ -118,9 +104,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           color: ColorManager.primary.withOpacity(.6),
                         ).copyWith(fontSize: 18.sp),
                       ),
-                      SizedBox(
-                        height: 12.h,
-                      ),
+                      SizedBox(height: 12.h),
                       Text(
                         'EGP 399',
                         style: getMediumStyle(
@@ -129,9 +113,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: 33.w,
-                  ),
+                  SizedBox(width: 33.w),
                   Expanded(
                     child: CustomElevatedButton(
                       label: 'Add to cart',

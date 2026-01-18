@@ -9,10 +9,7 @@ class SubCategoryItem extends StatelessWidget {
   final String title;
   final String image;
 
-  const SubCategoryItem(
-    this.title,
-    this.image,
-  );
+  const SubCategoryItem(this.title, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +31,11 @@ class SubCategoryItem extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(Sizes.s10.r),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(image, fit: BoxFit.cover),
               ),
             ),
           ),
-          Text(
-            title,
-            style: getRegularStyle(color: ColorManager.primary),
-          ),
+          Text(title, style: getRegularStyle(color: ColorManager.primary)),
         ],
       ),
     );

@@ -7,10 +7,7 @@ class ProductSize extends StatefulWidget {
   final List<int> sizes;
   final void Function() onSelected;
 
-  const ProductSize({
-    required this.sizes,
-    required this.onSelected,
-  });
+  const ProductSize({required this.sizes, required this.onSelected});
 
   @override
   State<ProductSize> createState() => _ProductSizeState();
@@ -26,12 +23,11 @@ class _ProductSizeState extends State<ProductSize> {
       children: [
         Text(
           'Size',
-          style: getMediumStyle(color: ColorManager.appBarTitle)
-              .copyWith(fontSize: 18.sp),
+          style: getMediumStyle(
+            color: ColorManager.appBarTitle,
+          ).copyWith(fontSize: 18.sp),
         ),
-        SizedBox(
-          height: 8.h,
-        ),
+        SizedBox(height: 8.h),
         SizedBox(
           height: 45.h,
           child: ListView.separated(
@@ -59,9 +55,7 @@ class _ProductSizeState extends State<ProductSize> {
                 ),
               ),
             ),
-            separatorBuilder: (_, __) => SizedBox(
-              width: 17.w,
-            ),
+            separatorBuilder: (_, __) => SizedBox(width: 17.w),
             itemCount: widget.sizes.length,
           ),
         ),

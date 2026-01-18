@@ -54,9 +54,7 @@ class WishlistItemDetails extends StatelessWidget {
               textStyle: getSemiBoldStyle(
                 color: ColorManager.primaryDark,
                 fontSize: FontSize.s18,
-              ).copyWith(
-                letterSpacing: 0.17,
-              ),
+              ).copyWith(letterSpacing: 0.17),
             ),
             product['salePrice'] == null
                 ? const SizedBox.shrink()
@@ -64,19 +62,18 @@ class WishlistItemDetails extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          height: Sizes.s10.h,
-                        ),
+                        SizedBox(height: Sizes.s10.h),
                         CustomAutoSizeText(
                           data: 'EGP ${product['salePrice']}',
-                          textStyle: getMediumStyle(
-                            color: ColorManager.appBarTitle.withOpacity(.6),
-                          ).copyWith(
-                            letterSpacing: 0.17,
-                            decoration: TextDecoration.lineThrough,
-                            color: ColorManager.appBarTitle.withOpacity(.6),
-                            fontSize: FontSize.s10,
-                          ),
+                          textStyle:
+                              getMediumStyle(
+                                color: ColorManager.appBarTitle.withOpacity(.6),
+                              ).copyWith(
+                                letterSpacing: 0.17,
+                                decoration: TextDecoration.lineThrough,
+                                color: ColorManager.appBarTitle.withOpacity(.6),
+                                fontSize: FontSize.s10,
+                              ),
                         ),
                       ],
                     ),

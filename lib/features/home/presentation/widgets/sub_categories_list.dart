@@ -27,10 +27,7 @@ class SubCategoriesList extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(
-            child: CategoryCardItem(
-              'Laptops',
-              ImageAssets.categoryCardImage,
-            ),
+            child: CategoryCardItem('Laptops', ImageAssets.categoryCardImage),
           ),
           SliverGrid(
             delegate: SliverChildBuilderDelegate(

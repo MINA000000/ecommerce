@@ -68,16 +68,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 padding: const EdgeInsets.only(top: Insets.s2),
                 child: Text(
                   widget.label!,
-                  style: widget.labelTextStyle ??
-                      getMediumStyle(color: ColorManager.white)
-                          .copyWith(fontSize: FontSize.s18),
+                  style:
+                      widget.labelTextStyle ??
+                      getMediumStyle(
+                        color: ColorManager.white,
+                      ).copyWith(fontSize: FontSize.s18),
                 ),
               )
             : const SizedBox(),
         Container(
           margin: EdgeInsets.only(top: Insets.s5.h),
           decoration: BoxDecoration(
-            color: widget.backgroundColor ??
+            color:
+                widget.backgroundColor ??
                 ColorManager.darkGrey.withOpacity(.15),
             borderRadius: BorderRadius.circular(Sizes.s8),
             border: Border.all(
@@ -90,8 +93,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             controller: widget.controller,
             focusNode: widget.focusNode,
             readOnly: widget.readOnly,
-            style: getMediumStyle(color: ColorManager.black)
-                .copyWith(fontSize: FontSize.s18),
+            style: getMediumStyle(
+              color: ColorManager.black,
+            ).copyWith(fontSize: FontSize.s18),
             obscureText: hidden,
             keyboardType: widget.textInputType,
             obscuringCharacter: '*',
@@ -129,9 +133,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       icon: SvgPicture.asset(SvgAssets.visibilityOff),
                     )
                   : widget.suffixIcon,
-              hintStyle: widget.hintTextStyle ??
-                  getRegularStyle(color: ColorManager.grey)
-                      .copyWith(fontSize: 18.sp),
+              hintStyle:
+                  widget.hintTextStyle ??
+                  getRegularStyle(
+                    color: ColorManager.grey,
+                  ).copyWith(fontSize: 18.sp),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               errorStyle: TextStyle(
@@ -150,8 +156,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ),
                 child: Text(
                   errorText!,
-                  style: getMediumStyle(color: ColorManager.error)
-                      .copyWith(fontSize: 18.sp),
+                  style: getMediumStyle(
+                    color: ColorManager.error,
+                  ).copyWith(fontSize: 18.sp),
                 ),
               ),
       ],

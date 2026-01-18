@@ -14,7 +14,7 @@ class UserModel {
   }
 }
 
-//another way to do that 
+//another way to do that
 
 // class UserModel extends User {
 //   UserModel({required super.name, required super.email, required super.role});

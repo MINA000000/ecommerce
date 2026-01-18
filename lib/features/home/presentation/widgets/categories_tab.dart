@@ -17,9 +17,7 @@ class CategoriesTab extends StatelessWidget {
       child: Row(
         children: [
           const CategoriesList(),
-          SizedBox(
-            width: Sizes.s16.w,
-          ),
+          SizedBox(width: Sizes.s16.w),
           const SubCategoriesList(),
         ],
       ),

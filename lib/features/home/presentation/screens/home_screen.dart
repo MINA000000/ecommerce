@@ -66,20 +66,17 @@ class CustomBottomNavBarItem extends BottomNavigationBarItem {
   final String title;
 
   CustomBottomNavBarItem(this.iconPath, this.title)
-      : super(
-          label: title,
-          icon: ImageIcon(
+    : super(
+        label: title,
+        icon: ImageIcon(AssetImage(iconPath), color: ColorManager.white),
+        activeIcon: CircleAvatar(
+          radius: 12,
+          backgroundColor: ColorManager.white,
+          child: ImageIcon(
             AssetImage(iconPath),
-            color: ColorManager.white,
+            color: ColorManager.primary,
+            size: 14,
           ),
-          activeIcon: CircleAvatar(
-            radius: 12,
-            backgroundColor: ColorManager.white,
-            child: ImageIcon(
-              AssetImage(iconPath),
-              color: ColorManager.primary,
-              size: 14,
-            ),
-          ),
-        );
+        ),
+      );
 }

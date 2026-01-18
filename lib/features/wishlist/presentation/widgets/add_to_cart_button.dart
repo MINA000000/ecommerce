@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({
-    required this.text,
-    required this.onPressed,
-  });
+  const AddToCartButton({required this.text, required this.onPressed});
 
   final String text;
   final void Function()? onPressed;

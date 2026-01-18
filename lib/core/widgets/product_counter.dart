@@ -43,17 +43,14 @@ class _ProductCounterState extends State<ProductCounter> {
               color: ColorManager.white,
             ),
           ),
-          SizedBox(
-            width: 18.w,
-          ),
+          SizedBox(width: 18.w),
           Text(
             '$_counter',
-            style: getMediumStyle(color: ColorManager.white)
-                .copyWith(fontSize: 18.sp),
+            style: getMediumStyle(
+              color: ColorManager.white,
+            ).copyWith(fontSize: 18.sp),
           ),
-          SizedBox(
-            width: 18.w,
-          ),
+          SizedBox(width: 18.w),
           InkWell(
             onTap: () {
               setState(() => _counter++);

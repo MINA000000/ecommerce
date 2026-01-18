@@ -19,10 +19,7 @@ class ColorAndSizeCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 7.5.r,
-          backgroundColor: color,
-        ),
+        CircleAvatar(radius: 7.5.r, backgroundColor: color),
         SizedBox(width: 5.w),
         Text(
           colorName,
