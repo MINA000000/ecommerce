@@ -15,3 +15,5 @@ class GetProductsError extends ProductsState {
   final String message;
   GetProductsError(this.message);
 }
+
+class ChangeQuantity extends ProductsState {}

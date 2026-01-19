@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit(this._getProducts) : super(ProductsInitial());
   final GetProducts _getProducts;
+  int quantity = 1;
   Future<void> getProducts({String? categoryId}) async {
     emit(GetProductsLoading());
     final result = await _getProducts(categoryId: categoryId);
@@ -14,5 +15,10 @@ class ProductsCubit extends Cubit<ProductsState> {
       (failure) => emit(GetProductsError(failure.message)),
       (products) => emit(GetProductsSuccess(products)),
     );
+  }
+
+  void changeQuantity(int updatedQuantity) {
+    quantity = updatedQuantity;
+    emit(ChangeQuantity());
   }
 }
