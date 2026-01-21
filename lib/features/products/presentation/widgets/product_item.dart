@@ -15,7 +15,9 @@ class ProductItem extends StatelessWidget {
     final Size screenSize = MediaQuery.sizeOf(context);
 
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(Routes.productDetails,arguments: product),
+      onTap: () => Navigator.of(
+        context,
+      ).pushNamed(Routes.productDetails, arguments: product),
       child: Container(
         width: screenSize.width * 0.4,
         height: screenSize.height * 0.3,

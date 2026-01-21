@@ -4,6 +4,7 @@ class APIConstants {
   static const String logingEndpoint = 'auth/signin';
   static const String categoriesEndpoint = 'categories';
   static const String productsEndpoint = 'products';
+  static const String cartEndpoint = 'cart';
 }
 
 class CacheConstants {

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce/core/constants.dart';
+import 'package:ecommerce/core/di/service_locator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,12 +8,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class RegisterModule {
   // url here will be injected
   @singleton
-  Dio get dio => Dio(
-    BaseOptions(
-      baseUrl: APIConstants.baseURL,
-      receiveDataWhenStatusError: true,
-    ),
-  );
+  Dio get dio {
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: APIConstants.baseURL,
+        receiveDataWhenStatusError: true,
+      ),
+    );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final token = getIt.get<SharedPreferences>().getString(
+            CacheConstants.token,
+          );
+          if (token != null) {
+            options.headers[CacheConstants.token] = token;
+          }
+          handler.next(options);
+        },
+      ),
+    );
+    return dio;
+  }
 
   // same thing works for instances that's gotten asynchronous.
   // all you need to do is wrap your instance with a future and tell injectable how

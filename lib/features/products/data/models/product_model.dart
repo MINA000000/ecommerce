@@ -1,6 +1,6 @@
 import 'package:ecommerce/core/models/category_model.dart';
 
-import 'brand_model.dart';
+import '../../../../core/models/brand_model.dart';
 
 class ProductModel {
   final double? sold;
