@@ -1,16 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/core/di/service_locator.dart';
 import 'package:ecommerce/core/resources/assets_manager.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/font_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
 import 'package:ecommerce/core/resources/values_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
+import 'package:ecommerce/core/utils/ui_utils.dart';
 import 'package:ecommerce/core/widgets/product_counter.dart';
+import 'package:ecommerce/features/cart/domain/entities/cart_item_data.dart';
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:ecommerce/features/cart/presentation/cubit/cart_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem();
+class CartItem extends StatefulWidget {
+  CartItem(this._cartItemData);
+  final CartItemData _cartItemData;
+
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  final CartCubit _cartCubit = getIt.get<CartCubit>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +32,6 @@ class CartItem extends StatelessWidget {
         MediaQuery.of(context).orientation == Orientation.portrait;
     final width = MediaQuery.sizeOf(context).width;
     final height = MediaQuery.sizeOf(context).height;
-
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(Routes.productDetails),
       child: Container(
@@ -38,8 +51,7 @@ class CartItem extends StatelessWidget {
                 ),
               ),
               child: CachedNetworkImage(
-                imageUrl:
-                    'https://pl.kicksmaniac.com/zdjecia/2022/08/23/508/43/NIKE_AIR_JORDAN_1_RETRO_HIGH_GS_RARE_AIR_MAX_ORANGE-mini.jpg',
+                imageUrl: widget._cartItemData.product.imageCover,
                 fit: BoxFit.cover,
                 height: isPortrait ? height * 0.142 : height * 0.23,
                 width: isPortrait ? width * 0.29 : 165.w,
@@ -60,7 +72,7 @@ class CartItem extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Nike Air Jordon Nike shoes flexible for wo..',
+                            widget._cartItemData.product.title,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: getBoldStyle(
@@ -70,7 +82,11 @@ class CartItem extends StatelessWidget {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            _cartCubit.deleteProduct(
+                              widget._cartItemData.product.id,
+                            );
+                          },
                           child: Image.asset(
                             IconsAssets.delete,
                             color: ColorManager.text,
@@ -84,7 +100,7 @@ class CartItem extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'EGP 399',
+                            'EGP ${widget._cartItemData.price}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: getBoldStyle(
@@ -94,9 +110,19 @@ class CartItem extends StatelessWidget {
                           ),
                         ),
                         ProductCounter(
-                          initialValue: 1,
-                          onIncrement: (quantity) {},
-                          onDecrement: (quantity) {},
+                          initialValue: widget._cartItemData.count,
+                          onIncrement: (quantity) {
+                            _cartCubit.updateProduct(
+                              widget._cartItemData.product.id,
+                              quantity,
+                            );
+                          },
+                          onDecrement: (quantity) {
+                            _cartCubit.updateProduct(
+                              widget._cartItemData.product.id,
+                              quantity,
+                            );
+                          },
                         ),
                       ],
                     ),

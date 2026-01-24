@@ -44,7 +44,7 @@ dependencies:
   dio: ^5.7.0
   shared_preferences: ^2.3.2
   flutter_bloc: ^8.1.6
-  fluttertoast: ^8.2.8
+  fluttertoast: ^9.0.0
   dartz: ^0.10.1
   get_it: ^7.7.0
   injectable: ^2.4.4

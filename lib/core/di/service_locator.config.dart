@@ -28,6 +28,24 @@ import 'package:ecommerce/features/auth/domain/use_cases/register.dart'
     as _i696;
 import 'package:ecommerce/features/auth/presentation/cubit/auth_cubit.dart'
     as _i350;
+import 'package:ecommerce/features/cart/data/data_sources/remote/cart_api_remote_data_source.dart'
+    as _i971;
+import 'package:ecommerce/features/cart/data/data_sources/remote/cart_remote_data_source.dart'
+    as _i328;
+import 'package:ecommerce/features/cart/data/repositories/cart_repository_impl.dart'
+    as _i222;
+import 'package:ecommerce/features/cart/domain/repositories/cart_repository.dart'
+    as _i487;
+import 'package:ecommerce/features/cart/domain/use_cases/add_product.dart'
+    as _i63;
+import 'package:ecommerce/features/cart/domain/use_cases/delete_product.dart'
+    as _i859;
+import 'package:ecommerce/features/cart/domain/use_cases/get_cart.dart'
+    as _i514;
+import 'package:ecommerce/features/cart/domain/use_cases/update_product.dart'
+    as _i533;
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart'
+    as _i769;
 import 'package:ecommerce/features/home/data/data_sources/remote/home_api_remote_data_source.dart'
     as _i24;
 import 'package:ecommerce/features/home/data/data_sources/remote/home_remote_data_source.dart'
@@ -72,6 +90,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i738.ProductsRemoteDataSource>(
       () => _i457.ProductsApiRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i328.CartRemoteDataSource>(
+      () => _i971.CartAPIRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.singleton<_i385.AuthRemoteDataSource>(
       () => _i407.AuthApiRemoteDataSource(gh<_i361.Dio>()),
     );
@@ -81,11 +102,34 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i810.HomeRepository>(
       () => _i1028.HomeRepositoryImpl(gh<_i329.HomeRemoteDataSource>()),
     );
+    gh.lazySingleton<_i487.CartRepository>(
+      () => _i222.CartRepositoryImpl(gh<_i328.CartRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i63.AddProduct>(
+      () => _i63.AddProduct(gh<_i487.CartRepository>()),
+    );
+    gh.lazySingleton<_i859.DeleteProduct>(
+      () => _i859.DeleteProduct(gh<_i487.CartRepository>()),
+    );
+    gh.lazySingleton<_i514.GetCart>(
+      () => _i514.GetCart(gh<_i487.CartRepository>()),
+    );
+    gh.lazySingleton<_i533.UpdateProduct>(
+      () => _i533.UpdateProduct(gh<_i487.CartRepository>()),
+    );
     gh.singleton<_i395.AuthLocalDataSource>(
       () => _i258.AuthSharedPrefLocalDataSource(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i994.ProductsRepository>(
       () => _i969.ProductsRepositoryImpl(gh<_i738.ProductsRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i769.CartCubit>(
+      () => _i769.CartCubit(
+        gh<_i63.AddProduct>(),
+        gh<_i859.DeleteProduct>(),
+        gh<_i514.GetCart>(),
+        gh<_i533.UpdateProduct>(),
+      ),
     );
     gh.lazySingleton<_i189.GetCategories>(
       () => _i189.GetCategories(gh<_i810.HomeRepository>()),
