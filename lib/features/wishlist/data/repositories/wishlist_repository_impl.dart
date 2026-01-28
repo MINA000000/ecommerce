@@ -5,7 +5,9 @@ import 'package:ecommerce/core/error/failure.dart';
 import 'package:ecommerce/core/mappers/product_mapper.dart';
 import 'package:ecommerce/features/wishlist/data/data_sources/remote/wishlist_remote_data_source.dart';
 import 'package:ecommerce/features/wishlist/domain/repositories/wishlist_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: WishlistRepository)
 class WishlistRepositoryImpl extends WishlistRepository {
   final WishlistRemoteDataSource _wishlistRemoteDataSource;
   WishlistRepositoryImpl(this._wishlistRemoteDataSource);

@@ -38,12 +38,18 @@ import 'package:ecommerce/features/cart/domain/repositories/cart_repository.dart
     as _i487;
 import 'package:ecommerce/features/cart/domain/use_cases/add_product.dart'
     as _i63;
+import 'package:ecommerce/features/cart/domain/use_cases/add_product_to_cart.dart'
+    as _i603;
 import 'package:ecommerce/features/cart/domain/use_cases/delete_product.dart'
     as _i859;
+import 'package:ecommerce/features/cart/domain/use_cases/delete_product_from_cart.dart'
+    as _i552;
 import 'package:ecommerce/features/cart/domain/use_cases/get_cart.dart'
     as _i514;
 import 'package:ecommerce/features/cart/domain/use_cases/update_product.dart'
     as _i533;
+import 'package:ecommerce/features/cart/domain/use_cases/update_product_from_cart.dart'
+    as _i45;
 import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart'
     as _i769;
 import 'package:ecommerce/features/home/data/data_sources/remote/home_api_remote_data_source.dart'
@@ -70,6 +76,22 @@ import 'package:ecommerce/features/products/domain/use_cases/get_products.dart'
     as _i551;
 import 'package:ecommerce/features/products/presentation/cubit/products_cubit.dart'
     as _i382;
+import 'package:ecommerce/features/wishlist/data/data_sources/remote/wishlist_api_remote_data_source.dart'
+    as _i397;
+import 'package:ecommerce/features/wishlist/data/data_sources/remote/wishlist_remote_data_source.dart'
+    as _i788;
+import 'package:ecommerce/features/wishlist/data/repositories/wishlist_repository_impl.dart'
+    as _i133;
+import 'package:ecommerce/features/wishlist/domain/repositories/wishlist_repository.dart'
+    as _i1016;
+import 'package:ecommerce/features/wishlist/domain/use_cases/add_product_to_wishlist.dart'
+    as _i1017;
+import 'package:ecommerce/features/wishlist/domain/use_cases/get_wishlist.dart'
+    as _i838;
+import 'package:ecommerce/features/wishlist/domain/use_cases/remove_product_from_wishlist.dart'
+    as _i1010;
+import 'package:ecommerce/features/wishlist/presentation/cubit/wishlist_cubit.dart'
+    as _i141;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -87,6 +109,9 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i361.Dio>(() => registerModule.dio);
+    gh.lazySingleton<_i788.WishlistRemoteDataSource>(
+      () => _i397.WishlistAPIRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i738.ProductsRemoteDataSource>(
       () => _i457.ProductsApiRemoteDataSource(gh<_i361.Dio>()),
     );
@@ -108,14 +133,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i63.AddProduct>(
       () => _i63.AddProduct(gh<_i487.CartRepository>()),
     );
+    gh.lazySingleton<_i603.AddProductToCart>(
+      () => _i603.AddProductToCart(gh<_i487.CartRepository>()),
+    );
     gh.lazySingleton<_i859.DeleteProduct>(
       () => _i859.DeleteProduct(gh<_i487.CartRepository>()),
+    );
+    gh.lazySingleton<_i552.DeleteProductFromCart>(
+      () => _i552.DeleteProductFromCart(gh<_i487.CartRepository>()),
     );
     gh.lazySingleton<_i514.GetCart>(
       () => _i514.GetCart(gh<_i487.CartRepository>()),
     );
     gh.lazySingleton<_i533.UpdateProduct>(
       () => _i533.UpdateProduct(gh<_i487.CartRepository>()),
+    );
+    gh.lazySingleton<_i45.UpdateProductFromCart>(
+      () => _i45.UpdateProductFromCart(gh<_i487.CartRepository>()),
     );
     gh.singleton<_i395.AuthLocalDataSource>(
       () => _i258.AuthSharedPrefLocalDataSource(gh<_i460.SharedPreferences>()),
@@ -131,6 +165,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i533.UpdateProduct>(),
       ),
     );
+    gh.lazySingleton<_i1016.WishlistRepository>(
+      () => _i133.WishlistRepositoryImpl(gh<_i788.WishlistRemoteDataSource>()),
+    );
     gh.lazySingleton<_i189.GetCategories>(
       () => _i189.GetCategories(gh<_i810.HomeRepository>()),
     );
@@ -142,6 +179,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i551.GetProducts>(
       () => _i551.GetProducts(gh<_i994.ProductsRepository>()),
+    );
+    gh.singleton<_i1017.AddProductToWishlist>(
+      () => _i1017.AddProductToWishlist(gh<_i1016.WishlistRepository>()),
+    );
+    gh.singleton<_i838.GetWishlist>(
+      () => _i838.GetWishlist(gh<_i1016.WishlistRepository>()),
+    );
+    gh.singleton<_i1010.RemoveProductFromWishlist>(
+      () => _i1010.RemoveProductFromWishlist(gh<_i1016.WishlistRepository>()),
     );
     gh.singleton<_i658.Login>(() => _i658.Login(gh<_i33.AuthRepository>()));
     gh.singleton<_i696.Register>(
@@ -155,6 +201,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i382.ProductsCubit>(
       () => _i382.ProductsCubit(gh<_i551.GetProducts>()),
+    );
+    gh.lazySingleton<_i141.WishlistCubit>(
+      () => _i141.WishlistCubit(
+        gh<_i1017.AddProductToWishlist>(),
+        gh<_i838.GetWishlist>(),
+        gh<_i1010.RemoveProductFromWishlist>(),
+      ),
     );
     return this;
   }

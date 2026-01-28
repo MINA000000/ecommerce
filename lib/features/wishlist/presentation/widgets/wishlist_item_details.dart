@@ -1,4 +1,5 @@
 import 'package:colornames/colornames.dart';
+import 'package:ecommerce/core/entities/product.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/font_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class WishlistItemDetails extends StatelessWidget {
   const WishlistItemDetails({required this.product});
 
-  final Map<String, dynamic> product;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class WishlistItemDetails extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CustomAutoSizeText(
-          data: product['title'],
+          data: product.title,
           textStyle: getSemiBoldStyle(
             color: ColorManager.primaryDark,
             fontSize: FontSize.s18,
@@ -34,12 +35,12 @@ class WishlistItemDetails extends StatelessWidget {
               width: Sizes.s14.w,
               height: Sizes.s14.h,
               decoration: BoxDecoration(
-                color: product['color'],
+                color: Colors.amber,
                 shape: BoxShape.circle,
               ),
             ),
             CustomAutoSizeText(
-              data: (product['color'] as Color).colorName,
+              data: 'Amber Color',
               textStyle: getMediumStyle(
                 color: ColorManager.primaryDark,
                 fontSize: FontSize.s14,
@@ -50,21 +51,19 @@ class WishlistItemDetails extends StatelessWidget {
         Row(
           children: [
             CustomAutoSizeText(
-              data: 'EGP ${product['finalPrice']}  ',
+              data: 'EGP ${product.price}  ',
               textStyle: getSemiBoldStyle(
                 color: ColorManager.primaryDark,
                 fontSize: FontSize.s18,
               ).copyWith(letterSpacing: 0.17),
             ),
-            product['salePrice'] == null
-                ? const SizedBox.shrink()
-                : Flexible(
+             Flexible(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(height: Sizes.s10.h),
                         CustomAutoSizeText(
-                          data: 'EGP ${product['salePrice']}',
+                          data: 'EGP ${product.price}',
                           textStyle:
                               getMediumStyle(
                                 color: ColorManager.appBarTitle.withOpacity(.6),

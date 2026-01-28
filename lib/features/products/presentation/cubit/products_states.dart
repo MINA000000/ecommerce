@@ -1,4 +1,4 @@
-import 'package:ecommerce/features/products/domain/entities/product.dart';
+import 'package:ecommerce/core/entities/product.dart';
 
 abstract class ProductsState {}
 

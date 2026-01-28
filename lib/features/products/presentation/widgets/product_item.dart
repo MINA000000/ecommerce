@@ -1,21 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/core/di/service_locator.dart';
+import 'package:ecommerce/core/entities/product.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
-import 'package:ecommerce/core/utils/ui_utils.dart';
 import 'package:ecommerce/core/widgets/heart_button.dart';
 import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:ecommerce/features/cart/presentation/cubit/cart_states.dart';
-import 'package:ecommerce/features/products/domain/entities/product.dart';
+import 'package:ecommerce/features/wishlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductItem extends StatelessWidget {
     ProductItem(this.product);
   final Product product;
   final CartCubit _cartCubit = getIt.get<CartCubit>();
+  final WishlistCubit _wishlistCubit = getIt.get<WishlistCubit>();
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.sizeOf(context);
@@ -55,7 +54,9 @@ class ProductItem extends StatelessWidget {
                   PositionedDirectional(
                     top: screenSize.height * 0.01,
                     end: screenSize.width * 0.02,
-                    child: HeartButton(onTap: () {}),
+                    child: HeartButton(onTap: () {
+                      _wishlistCubit.addProductToWishlist(product.id);
+                    }),
                   ),
                 ],
               ),

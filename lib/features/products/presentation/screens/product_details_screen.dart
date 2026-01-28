@@ -1,10 +1,10 @@
 import 'package:ecommerce/core/di/service_locator.dart';
+import 'package:ecommerce/core/entities/product.dart';
 import 'package:ecommerce/core/resources/assets_manager.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/styles_manager.dart';
 import 'package:ecommerce/core/widgets/custom_elevated_button.dart';
 import 'package:ecommerce/core/widgets/product_counter.dart';
-import 'package:ecommerce/features/products/domain/entities/product.dart';
 import 'package:ecommerce/features/products/presentation/cubit/products_cubit.dart';
 import 'package:ecommerce/features/products/presentation/cubit/products_states.dart';
 import 'package:ecommerce/features/products/presentation/widgets/product_description.dart';
@@ -16,14 +16,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProductDetails extends StatefulWidget {
-  const ProductDetails();
+class ProductDetailsScreen extends StatefulWidget {
+  const ProductDetailsScreen();
 
   @override
-  State<ProductDetails> createState() => _ProductDetailsState();
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late final Product product =
       ModalRoute.of(context)!.settings.arguments as Product;
   final ProductsCubit productsCubit = getIt.get<ProductsCubit>();

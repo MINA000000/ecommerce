@@ -1,18 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/core/di/service_locator.dart';
+import 'package:ecommerce/core/entities/product.dart';
 import 'package:ecommerce/core/resources/color_manager.dart';
 import 'package:ecommerce/core/resources/values_manager.dart';
 import 'package:ecommerce/core/routes/routes.dart';
 import 'package:ecommerce/core/widgets/heart_button.dart';
+import 'package:ecommerce/features/cart/presentation/cubit/cart_cubit.dart';
+import 'package:ecommerce/features/wishlist/presentation/cubit/wishlist_cubit.dart';
 import 'package:ecommerce/features/wishlist/presentation/widgets/add_to_cart_button.dart';
 import 'package:ecommerce/features/wishlist/presentation/widgets/wishlist_item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WishlistItem extends StatelessWidget {
-  const WishlistItem({required this.product});
+  WishlistItem({required this.product});
 
-  final Map<String, dynamic> product;
-
+  final Product product;
+  final WishlistCubit _wishlistCubit = getIt.get<WishlistCubit>();
+  final CartCubit _cartCubit = getIt.get<CartCubit>();
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -42,7 +47,7 @@ class WishlistItem extends StatelessWidget {
                   width: Sizes.s120.w,
                   height: Sizes.s135.h,
                   fit: BoxFit.cover,
-                  imageUrl: product['imageUrl'],
+                  imageUrl: product.imageCoverURL,
                   placeholder: (_, __) => const Center(
                     child: CircularProgressIndicator(
                       color: ColorManager.primary,
@@ -63,9 +68,19 @@ class WishlistItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                HeartButton(onTap: () {}),
+                HeartButton(
+                  onTap: () async {
+                    await _wishlistCubit.removeProductFromWishlist(product.id);
+                    _wishlistCubit.getWishlist();
+                  },
+                ),
                 SizedBox(height: Sizes.s14.h),
-                AddToCartButton(onPressed: () {}, text: 'Add to Cart'),
+                AddToCartButton(
+                  onPressed: () {
+                    _cartCubit.addProduct(product.id);
+                  },
+                  text: 'Add to Cart',
+                ),
               ],
             ),
           ],
