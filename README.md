@@ -1,16 +1,13 @@
-# ecommerce
+# E-Commerce Mobile Application
 
-A new Flutter project.
+A scalable shopping app built with Flutter, Clean Architecture, and Bloc, featuring product browsing, cart management, and order processing.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+- User authentication with Firebase
+- Product browsing and search
+- Cart management and checkout
+- Order history tracking
+- Clean Architecture with feature-based modular structure
+- State management using Bloc (Cubit)
+- REST API integration for products and orders
